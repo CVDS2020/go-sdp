@@ -17,7 +17,6 @@ i=A Seminar on the session description protocol
 u=http://www.example.com/seminars/sdp.pdf
 e=j.doe@example.com (Jane Doe)
 p=12345
-c=IN IP4 224.2.17.12/127
 b=CT:154798
 t=2873397496 2873404696
 r=7d 1h 0 25h
