@@ -590,17 +590,17 @@ func (d *Decoder) decodeTimingField(m *Message) error {
 		}
 	}
 	var (
-		ntpStart, ntpEnd uint64
+		start, end int64
 	)
-	if ntpStart, err = parseNTP(startV); err != nil {
+	if start, err = strconv.ParseInt(string(startV), 10, 64); err != nil {
 		return errors.Wrap(err, "failed to parse start time")
 	}
-	if ntpEnd, err = parseNTP(endV); err != nil {
+	if end, err = strconv.ParseInt(string(endV), 10, 64); err != nil {
 		return errors.Wrap(err, "failed to parse end time")
 	}
 	t := Timing{}
-	t.Start = NTPToTime(ntpStart)
-	t.End = NTPToTime(ntpEnd)
+	t.Start = time.Unix(start, 0)
+	t.End = time.Unix(end, 0)
 	m.Timing = append(m.Timing, t)
 	return nil
 }

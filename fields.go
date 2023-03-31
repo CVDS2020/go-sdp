@@ -349,9 +349,9 @@ func appendUint64(b []byte, v uint64) []byte {
 // AddTiming appends Timing field to Session. Both start and end can be zero.
 func (s Session) AddTiming(start, end time.Time) Session {
 	v := make([]byte, 0, 256)
-	v = appendUint64(v, TimeToNTP(start))
+	v = appendInt64(v, start.Unix())
 	v = appendSpace(v)
-	v = appendUint64(v, TimeToNTP(end))
+	v = appendInt64(v, end.Unix())
 	return s.append(TypeTiming, v)
 }
 
